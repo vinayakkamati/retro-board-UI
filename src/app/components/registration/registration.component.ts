@@ -9,6 +9,6 @@ import { UserDTO } from 'src/app/models/user-dto.interface';
 export class RegistrationComponent {
  
   createUser(user: UserDTO): void{
-      
+    console.log(user.userName);
   }
 }
