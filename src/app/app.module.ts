@@ -1,10 +1,11 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LogInComponent } from './components/log-in/log-in.component';
+import { LogInComponent } from './components/registration/login/log-in.component';
 import { RouterModule, Routes } from '@angular/router';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { RegistrationComponent } from './components/registration/signup/registration.component';
 import { FormsModule } from '@angular/forms';
 
 const appRoutes: Routes = [
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
