@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommentDTO } from 'src/app/models/comment-dto.interface';
 import { CommentService } from '../services/comment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-comment-item',
@@ -9,19 +10,18 @@ import { CommentService } from '../services/comment.service';
 })
 export class CommentItemComponent {
   @Input() category;
-  
-  constructor(private commentService: CommentService){}
+  @Output()
+  commentCreated: EventEmitter<CommentDTO> = new EventEmitter();
+   
+  constructor(private commentService: CommentService, private router: Router){}
 
-  onCreateComment(comment: CommentDTO){
-    console.log(comment.commentType)
-    console.log(comment.comment);
-    console.log(this.category)
-    this.commentService.createComment(comment, this.category.categoryValue).subscribe(
-      (comment: CommentDTO) => {
-        // console.log(comment)
-      
-      }
-    );
+  createComment(comment: CommentDTO){
+    comment.commentType = this.category.categoryValue;
+    // this.commentService.createComment(comment, this.category.categoryValue)
+    // .subscribe(()=>{
+    // }
+    // );
+    this.commentCreated.emit(comment);
   }
 
 }
