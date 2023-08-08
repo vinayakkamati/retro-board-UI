@@ -7,10 +7,13 @@ import { LogInComponent } from './components/registration/login/log-in.component
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './components/registration/signup/registration.component';
 import { FormsModule } from '@angular/forms';
+import { BoardItemComponent } from './components/board/board-item/board-item.component';
+import { CommentItemComponent } from './components/board/comment-item/comment-item.component';
 
 const appRoutes: Routes = [
   {path:'', component: LogInComponent},
-  {path:'register', component: RegistrationComponent}
+  {path:'register', component: RegistrationComponent},
+  {path:'board', component: BoardItemComponent}
 
 ]
 @NgModule({
@@ -18,6 +21,8 @@ const appRoutes: Routes = [
     AppComponent,
     LogInComponent,
     RegistrationComponent,
+    BoardItemComponent,
+    CommentItemComponent
   ],
   imports: [
     BrowserModule,

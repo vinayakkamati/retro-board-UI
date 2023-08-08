@@ -1,0 +1,13 @@
+<div class="row" >
+  <div class="column" *ngFor="let category of categories">
+    <div class="container">
+      <label>{{ category.categoryName }}</label>
+      <div class="container-1">
+        <app-comment-item 
+        [category] ="category">
+      </app-comment-item>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,37 @@
+  .container{
+    align-items: center;
+    background-color: rgb(223, 220, 220);
+    height: 100%;
+    width: 25vw;
+    margin-right: 90%;
+    margin-top: 5%;
+    border-radius: 3%;
+  }
+  .container-1{
+    background-color: white;
+    height: 3%;
+    width: 90%;
+    margin-top: 10%;
+    margin-bottom: 20%;
+    border-radius: 3%;
+  }
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+.row {
+  margin-left: 20px;
+  margin-right: -125px;
+}
+.container-2{
+  background-color: white;
+  height: 200%;
+  width: 67%;
+  margin-top: 8%;
+  border-radius: 3%;
+  margin-left: -5%;
+}
+
