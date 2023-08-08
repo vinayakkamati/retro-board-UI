@@ -9,6 +9,9 @@ import { RegistrationComponent } from './components/registration/signup/registra
 import { FormsModule } from '@angular/forms';
 import { BoardItemComponent } from './components/board/board-item/board-item.component';
 import { CommentItemComponent } from './components/board/comment-item/comment-item.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 const appRoutes: Routes = [
   {path:'', component: LogInComponent},
@@ -28,6 +31,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    MatButtonModule, MatMenuModule, MatIconModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

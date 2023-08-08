@@ -2,7 +2,7 @@
     align-items: center;
     background-color: rgb(223, 220, 220);
     height: 100%;
-    width: 25vw;
+    width: 30vw;
     margin-right: 90%;
     margin-top: 5%;
     border-radius: 3%;
@@ -18,7 +18,7 @@
 
 .column {
   float: left;
-  width: 25%;
+  width: 30%;
   padding: 0 10px;
 }
 
@@ -33,5 +33,17 @@
   margin-top: 8%;
   border-radius: 3%;
   margin-left: -5%;
+}
+textarea {
+  resize: none;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+button{
+  border: none;
+  outline: none;
+  background-color: white;
 }
 

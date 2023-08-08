@@ -1,6 +1,7 @@
 import { UserDTO } from "./user-dto.interface";
 
-export interface CommentDTO{
+export class CommentDTO{
+    id:bigint;
     comment: string;
     commentType: string;
     user: UserDTO;
