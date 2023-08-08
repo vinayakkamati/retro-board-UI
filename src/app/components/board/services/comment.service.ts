@@ -10,6 +10,7 @@ const USER_API: string = `${environment.apiBaseUrl}/comments`
     providedIn:"root"
 })
 export class CommentService{
+   
     constructor(private http: HttpClient){}
 
     createComment(newComment: CommentDTO, commentType: string): Observable<void>{
@@ -23,5 +24,12 @@ export class CommentService{
 
     deleteComment(id:any):Observable<void>{
         return this.http.delete<void>(`${USER_API}/${id}`);
+    }
+    // updateComment(comment: CommentDTO):Observable<CommentDTO> {
+    //     const commentDesp = comment.comment;
+    //     return this.http.put<CommentDTO>(`${USER_API}/edit/${comment.id}`,commentDesp)
+    //   }
+    updateComment(comment: CommentDTO): Observable<CommentDTO> {
+        return this.http.put<CommentDTO>(`${USER_API}/edit/${comment.id}`, comment);
     }
 }

@@ -3,7 +3,6 @@ import { Category } from 'src/app/models/category.interface';
 import { CardService } from '../services/card.service';
 import { CommentService } from '../services/comment.service';
 import { CommentDTO } from 'src/app/models/comment-dto.interface';
-import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-board-item',
@@ -13,6 +12,8 @@ import { filter, map } from 'rxjs';
 export class BoardItemComponent {
   categories: Array<Category>;
   comments: CommentDTO[] = [];
+  allowEdit: boolean = false;
+  commentId: any;
 
   constructor(private cardService: CardService, private commentService: CommentService) {}
 
@@ -21,6 +22,11 @@ export class BoardItemComponent {
       .getCategories()
       .subscribe((categories: Category[]) => (this.categories = categories));
     this.fetchComments();
+  }
+
+  editComment(id:any){
+    this.allowEdit = true;
+    this.commentId = id;
   }
 
   onCreateComment(newComment: CommentDTO){
@@ -36,10 +42,17 @@ export class BoardItemComponent {
     this.commentService.fetchComments()
     .subscribe(
       (comments: CommentDTO[]) => {
-        console.log(comments)
         this.comments = comments
       })
   }
+  
+  updateComment(comment: CommentDTO) {
+    this.commentService.updateComment(comment).subscribe(()=>{
+      this.commentId="";
+      this.fetchComments();
+  })
+
+} 
 
   deleteComment(id:any){
     console.log(id);

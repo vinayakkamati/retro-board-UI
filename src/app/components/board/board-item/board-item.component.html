@@ -1,19 +1,10 @@
-<!-- <main class="main">
-  <ng-container *ngFor="let category of categories">
-    <div class="w-50 inline-block float-left h-50">
-      <div class="flex flex-column center">
-        <h4>
-          {{ category.categoryName }}
-        </h4>
-      </div>
-      <app-comment-item></app-comment-item>
-    </div>
-  </ng-container>
-</main> -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="row" >
   <div class="column" *ngFor="let category of categories">
     <div class="container">
-      <label>{{ category.categoryName }}</label>
+      &nbsp;
+      <h5>{{ category.categoryName }}</h5>
       <div class="container-1">
         <app-comment-item 
         [category] ="category" (commentCreated)="onCreateComment($event)">
@@ -22,14 +13,25 @@
       <div *ngFor = "let comment of comments">
         <div class="row" *ngIf = "comment.commentType == category.categoryValue">
           <div class="container-2">
-            <p>{{ comment.comment }}</p>
-            <button class="btn btn-danger" (click) = "deleteComment(comment.id)">
-              Delete
-            </button>
+            <div *ngIf="(comment.id == commentId);else other_content">
+              <textarea id="content" required [(ngModel)]="comment.comment" name="comment" (blur)="updateComment(comment)"></textarea>
+              <button (click) = "updateComment(comment)">
+                <mat-icon  style="font-size:20px;color:rgb(12, 12, 201)">send</mat-icon>
+              </button>
+            </div>
+            <ng-template #other_content>
+              <p>{{ comment.comment }}</p>
+              <button (click) = "deleteComment(comment.id)">
+                <i class="material-icons" style="font-size:20px;color:rgb(223, 68, 68)">delete</i>
+              </button>
+              &nbsp;
+              <button (click) = "editComment(comment.id)">
+                <i class="fa fa-edit" style="font-size:20px"></i>
+              </button> 
+            </ng-template>
          </div>
         </div>
-      </div>
-      
+      </div> 
     </div>
   </div>
 </div>
