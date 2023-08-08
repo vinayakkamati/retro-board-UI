@@ -32,4 +32,12 @@ export class BoardItemComponent {
         this.comments = comments
       })
   }
+
+  deleteComment(id:any){
+    console.log(id);
+    this.commentService.deleteComment(id)
+    .subscribe(()=>{
+      this.ngOnInit();
+    })
+  }
 }
