@@ -23,6 +23,14 @@ export class BoardItemComponent {
     this.fetchComments();
   }
 
+  onCreateComment(newComment: CommentDTO){
+     this.commentService.createComment(newComment, newComment.commentType)
+    .subscribe(()=>{
+      this.fetchComments();
+    }
+    );
+  }
+
   fetchComments(){
     console.log(this.categories);
     this.commentService.fetchComments()
@@ -37,7 +45,7 @@ export class BoardItemComponent {
     console.log(id);
     this.commentService.deleteComment(id)
     .subscribe(()=>{
-      this.ngOnInit();
+        this.fetchComments();
     })
   }
 }

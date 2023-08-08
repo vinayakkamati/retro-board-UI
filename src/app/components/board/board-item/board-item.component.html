@@ -16,7 +16,7 @@
       <label>{{ category.categoryName }}</label>
       <div class="container-1">
         <app-comment-item 
-        [category] ="category">
+        [category] ="category" (commentCreated)="onCreateComment($event)">
       </app-comment-item>
       </div>
       <div *ngFor = "let comment of comments">

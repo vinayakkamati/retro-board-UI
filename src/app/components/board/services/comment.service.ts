@@ -12,9 +12,9 @@ const USER_API: string = `${environment.apiBaseUrl}/comments`
 export class CommentService{
     constructor(private http: HttpClient){}
 
-    createComment(newComment: CommentDTO, commentType: string): Observable<CommentDTO>{
+    createComment(newComment: CommentDTO, commentType: string): Observable<void>{
         const params =  new HttpParams().set('commentType',commentType)
-        return this.http.post<CommentDTO>(`${USER_API}/create`,newComment,{'params':params});
+        return this.http.post<void>(`${USER_API}/create`,newComment,{'params':params});
     }
 
     fetchComments():Observable<CommentDTO[]>{
