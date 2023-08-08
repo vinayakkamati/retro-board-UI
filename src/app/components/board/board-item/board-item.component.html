@@ -1,3 +1,15 @@
+<!-- <main class="main">
+  <ng-container *ngFor="let category of categories">
+    <div class="w-50 inline-block float-left h-50">
+      <div class="flex flex-column center">
+        <h4>
+          {{ category.categoryName }}
+        </h4>
+      </div>
+      <app-comment-item></app-comment-item>
+    </div>
+  </ng-container>
+</main> -->
 <div class="row" >
   <div class="column" *ngFor="let category of categories">
     <div class="container">
@@ -7,6 +19,14 @@
         [category] ="category">
       </app-comment-item>
       </div>
+      <div *ngFor = "let comment of comments">
+        <div class="row" *ngIf = "comment.commentType == category.categoryValue">
+          <div class="container-2">
+            <p>{{ comment.comment }}</p>
+         </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>

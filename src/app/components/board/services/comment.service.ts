@@ -16,4 +16,8 @@ export class CommentService{
         const params =  new HttpParams().set('commentType',commentType)
         return this.http.post<CommentDTO>(`${USER_API}/create`,newComment,{'params':params});
     }
+
+    fetchComments():Observable<CommentDTO[]>{
+        return this.http.get<CommentDTO[]>(`${USER_API}/`);
+    }
 }
