@@ -23,6 +23,9 @@
         <div class="row" *ngIf = "comment.commentType == category.categoryValue">
           <div class="container-2">
             <p>{{ comment.comment }}</p>
+            <button class="btn btn-danger" (click) = "deleteComment(comment.id)">
+              Delete
+            </button>
          </div>
         </div>
       </div>

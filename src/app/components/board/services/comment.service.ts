@@ -20,4 +20,8 @@ export class CommentService{
     fetchComments():Observable<CommentDTO[]>{
         return this.http.get<CommentDTO[]>(`${USER_API}/`);
     }
+
+    deleteComment(id:any):Observable<void>{
+        return this.http.delete<void>(`${USER_API}/${id}`);
+    }
 }
