@@ -12,6 +12,7 @@ import { filter, map } from 'rxjs';
 })
 export class BoardItemComponent {
   categories: Array<Category>;
+  comments: CommentDTO[] = [];
 
   constructor(private cardService: CardService, private commentService: CommentService) {}
 
@@ -19,5 +20,16 @@ export class BoardItemComponent {
     this.cardService
       .getCategories()
       .subscribe((categories: Category[]) => (this.categories = categories));
+    this.fetchComments();
+  }
+
+  fetchComments(){
+    console.log(this.categories);
+    this.commentService.fetchComments()
+    .subscribe(
+      (comments: CommentDTO[]) => {
+        console.log(comments)
+        this.comments = comments
+      })
   }
 }

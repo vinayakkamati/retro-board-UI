@@ -18,6 +18,8 @@ export class CommentItemComponent {
     console.log(this.category)
     this.commentService.createComment(comment, this.category.categoryValue).subscribe(
       (comment: CommentDTO) => {
+        // console.log(comment)
+      
       }
     );
   }
