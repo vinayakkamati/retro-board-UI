@@ -7,6 +7,15 @@
   </button>
 </nav>
 <div class="row" >
+  <div class="alert alert-success" *ngIf="success">
+    <p>Comment submitted successfully!</p>
+  </div>
+  <div class="alert alert-danger" *ngIf="deleted">
+    <p>Comment deleted successfully!</p>
+  </div>
+  <div class="alert alert-info" *ngIf="updated">
+    <p>Comment updated successfully!</p>
+  </div>
   <div class="column" *ngFor="let category of categories">
     <div class="container">
       &nbsp;

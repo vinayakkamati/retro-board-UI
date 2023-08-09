@@ -17,6 +17,10 @@ export class BoardItemComponent {
   allowEdit: boolean = false;
   commentId: any;
   currentUser: UserDTO;
+  success = false;  
+  updated = false;
+  deleted = false;
+  timeoutId?: number;
 
   constructor(private cardService: CardService, private commentService: CommentService,
       private userService:RegistrationService) {}
@@ -40,6 +44,8 @@ export class BoardItemComponent {
      this.commentService.createComment(newComment, newComment.commentType)
     .subscribe(()=>{
       this.fetchComments();
+      this.success = true;
+      this.resetTimer();
     });
   }
 
@@ -55,6 +61,8 @@ export class BoardItemComponent {
     this.commentService.updateComment(comment).subscribe(()=>{
       this.commentId="";
       this.fetchComments();
+      this.updated = true;
+      this.resetTimer();
   })
 
 } 
@@ -64,6 +72,20 @@ export class BoardItemComponent {
     this.commentService.deleteComment(id)
     .subscribe(()=>{
         this.fetchComments();
+        this.deleted = true;
+        this.resetTimer();
     })
+  }
+
+
+  resetTimer(): void {
+    if (this.timeoutId) {
+      window.clearTimeout(this.timeoutId);
+    }
+    this.timeoutId = window.setTimeout(() => {
+      this.success = false;
+      this.deleted = false;
+      this.updated = false;
+    }, 2000);
   }
 }
