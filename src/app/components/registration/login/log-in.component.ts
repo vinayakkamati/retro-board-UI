@@ -1,9 +1,7 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { UserDTO } from 'src/app/models/user-dto.interface';
 import { RegistrationService } from '../registration.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-log-in',
@@ -14,11 +12,12 @@ export class LogInComponent implements OnInit{
   form!: FormGroup;
   loading = false;
   submitted = false;
+  error = null;  
+  timeoutId?: number;
 
   constructor(private registrationService: RegistrationService,
     private router: Router,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute){}
+    private formBuilder: FormBuilder){}
   ngOnInit() {
     this.form = this.formBuilder.group({
         username: ['', Validators.required],
@@ -37,8 +36,26 @@ get f() { return this.form.controls; }
 
     this.registrationService.saveCurrentUser(this.f.username.value, this.f.password.value)
       .subscribe(
-        () => this.router.navigate(['/board']).then(() => {window.location.reload();
-        })
+        {
+          next: () => {
+              this.router.navigate(['/board']).then(() => {window.location.reload();
+              })
+          },
+          error: error => {
+            this.error=error.message;
+              this.loading = false;
+              this.resetTimer();
+          }
+        }
       ) 
+  }
+
+  resetTimer(): void {
+    if (this.timeoutId) {
+      window.clearTimeout(this.timeoutId);
+    }
+    this.timeoutId = window.setTimeout(() => {
+      this.error = null;
+    }, 3000);
   }
 }

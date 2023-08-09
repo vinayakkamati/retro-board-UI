@@ -1,3 +1,6 @@
+<div class="alert alert-danger" *ngIf="error">
+  <p>Please enter valid username or password</p>
+</div>
 <div class="container-fluid">
   <form class="mx-auto"  [formGroup]="form" (ngSubmit)="validateUser()">
       <h4 class="text-center">Login</h4>
