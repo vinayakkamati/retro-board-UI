@@ -55,4 +55,16 @@ button{
   font-size: 14px;
   color: rgb(139, 5, 139);
 }
+.alert {
+  padding: 8px;
+  border-radius: 2px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  height:35px;
+  width:50%;
+  margin-left: 22%;  
+  margin-bottom: -100%;
+  margin-top: 0%;
+}
 
