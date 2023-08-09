@@ -1,3 +1,6 @@
+<div class="alert alert-danger" *ngIf="error">
+  <p>The email is already registered</p>
+</div>
 <div class="container-fluid">
     <form class="mx-auto" [formGroup]="form" (ngSubmit)="createUser()">
         <h4 class="text-center">Signup</h4>

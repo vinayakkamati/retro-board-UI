@@ -9,10 +9,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {form!: FormGroup;
+export class RegistrationComponent {
+  form!: FormGroup;
   loading = false;
   submitted = false;
   user:UserDTO =new UserDTO;
+  error = null;  
+  timeoutId?: number;
 
   constructor(private registrationService: RegistrationService,
     private router: Router,
@@ -23,8 +26,20 @@ export class RegistrationComponent {form!: FormGroup;
         emailId:['', Validators.required],
         password:['', Validators.required],
         c_password: ['', Validators.required]
-    });
+    }, {validator: this.checkIfMatchingPasswords('password', 'c_password')});
 }
+  checkIfMatchingPasswords(passwordKey: string, c_password: string): any {
+    return (form: FormGroup) => {
+      let passwordInput = form.controls[passwordKey],
+          passwordConfirmationInput = form.controls[c_password];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({notEquivalent: true})
+      }
+      else {
+          return passwordConfirmationInput.setErrors(null);
+      }
+    }
+  }
 
 get f() { return this.form.controls; }
  
@@ -43,7 +58,21 @@ get f() { return this.form.controls; }
     this.registrationService.createUser(this.user).subscribe(
       () =>{
         this.router.navigate(['/'])
+      },
+      error => {
+        this.error=error.message;
+          this.loading = false;
+          this.resetTimer();
       }
     );
+  }
+
+  resetTimer(): void {
+    if (this.timeoutId) {
+      window.clearTimeout(this.timeoutId);
+    }
+    this.timeoutId = window.setTimeout(() => {
+      this.error = null;
+    }, 3000);
   }
 }

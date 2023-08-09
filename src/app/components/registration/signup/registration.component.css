@@ -8,6 +8,16 @@
     color: red;
   }
 
+.alert {
+    padding: 16px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    width:25%;
+    margin-left: 38%;  
+    margin-bottom: -8%;
+  }
+
 body{
     /* background: linear-gradient(90deg, rgb(194, 193, 197) 0%, rgb(206, 205, 207) 35%, rgb(218, 220, 220) 100%); */
     font-family: 'Poppins', sans-serif;
