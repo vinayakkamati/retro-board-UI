@@ -1,27 +1,38 @@
 <div class="container-fluid">
-    <form class="mx-auto" #userCreateForm="ngForm" (ngSubmit)="createUser(userCreateForm.value)">
+    <form class="mx-auto" [formGroup]="form" (ngSubmit)="createUser()">
         <h4 class="text-center">Signup</h4>
         <div class="mb-2 mt-4">
-          <label for="name" class="form-label">Name</label>
-            <input type="text" name="name" class="form-control" id="name" ngModel required #name="ngModel"/>
-            <span class="help-block" *ngIf="!name.valid && name.touched">Please enter your name</span>
+          <label class="form-label">Name</label>
+            <input type="text"  formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }"/>
+            <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+              <div *ngIf="f.name.errors.required">Please enter your name</div>
+            </div>
         </div>
         <div class="mb-2 mt-4">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" name="emailId" class="form-control" id="emailId" ngModel required #emailId="ngModel">
-          <span class="help-block" *ngIf="!emailId.valid && emailId.touched">Please enter your email</span>
+          <label class="form-label">Email</label>
+          <input type="email" formControlName="emailId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.emailId.errors }"/>
+          <div *ngIf="submitted && f.emailId.errors" class="invalid-feedback">
+            <div *ngIf="f.emailId.errors.required">Please enter your email</div>
+          </div>
         </div>
         <div class="mb-2 mt-4">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" id="password" ngModel required #password="ngModel">
-          <span class="help-block" *ngIf="!password.valid && password.touched">Please enter your password</span>
+          <label class="form-label">Password</label>
+          <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+          </div>
         </div>
         <div class="mb-2 mt-4">
-          <label for="c_password" class="form-label">Confirm Password</label>
-          <input type="password" name="c_password" class="form-control" id="c_password" ngModel required #c_password="ngModel">
-          <span class="help-block" *ngIf="!c_password.valid && c_password.touched">Please confirm your password</span>
+          <label class="form-label">Confirm Password</label>
+          <input type="password" formControlName="c_password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.c_password.errors }"/>
+          <div *ngIf="submitted && f.c_password.errors" class="invalid-feedback">
+            <div *ngIf="f.c_password.errors.required">Please confirm your password</div>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-4">Sign up</button>
+        <button [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+          Sign up
+         </button>
         <div class="text-center login">
           Already have an account ? <a routerLink="">Login</a> here.
         </div>

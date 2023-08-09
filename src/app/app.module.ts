@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LogInComponent } from './components/registration/login/log-in.component';
 import { RouterModule, Routes } from '@angular/router';
 import { RegistrationComponent } from './components/registration/signup/registration.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BoardItemComponent } from './components/board/board-item/board-item.component';
 import { CommentItemComponent } from './components/board/comment-item/comment-item.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -31,6 +31,7 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MatButtonModule, MatMenuModule, MatIconModule,
     RouterModule.forRoot(appRoutes)
   ],
