@@ -27,7 +27,7 @@ export class CommentItemComponent implements OnInit {
   }
   get f() { return this.form.controls; }
   
-  createComment(formDirective:FormGroupDirective){
+  createComment(){
     this.submitted = true;
 
     if (this.form.invalid) {
