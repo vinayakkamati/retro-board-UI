@@ -2,11 +2,10 @@
   <div class="form-group">
     <textarea
       class="form-control"
-      id="content"
-      required
-      ngModel
-      name="comment">
+      id="comment"
+      name="comment" ngModel required #comment="ngModel">
     </textarea>
+    <span class="help-block" *ngIf="!comment.valid && comment.touched">Please enter a comment</span>
   </div>
     <button
       type="submit" class="btn btn-primary btn-sm">

@@ -15,4 +15,13 @@ export class RegistrationService{
     createUser(newUser: UserDTO): Observable<UserDTO>{
         return this.http.post<UserDTO>(`${USER_API}/create`,newUser);
     }
+
+    validateUser(user:UserDTO): Observable<UserDTO>{
+        return this.http.post<UserDTO>(`${USER_API}/login`,user);
+    }
+
+    saveCurrentUser(user:UserDTO){
+        console.log(user);
+        localStorage.setItem("user", JSON.stringify(user));
+    }
 }

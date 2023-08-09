@@ -1,4 +1,4 @@
-export interface UserDTO{
+export class UserDTO{
     id: bigint;
     userName: string;
     emailId: string;

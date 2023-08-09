@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserDTO } from 'src/app/models/user-dto.interface';
 import { RegistrationService } from '../registration.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -9,12 +10,12 @@ import { RegistrationService } from '../registration.service';
 })
 export class RegistrationComponent {
   
-  constructor(private registrationService: RegistrationService){}
+  constructor(private registrationService: RegistrationService,private router: Router){}
  
   createUser(user: UserDTO): void{
     this.registrationService.createUser(user).subscribe(
-      (user: UserDTO) =>{
-        console.log(user);
+      () =>{
+        this.router.navigate(['/'])
       }
     );
   }
