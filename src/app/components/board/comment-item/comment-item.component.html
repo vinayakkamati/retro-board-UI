@@ -1,15 +1,15 @@
-<form #commentForm="ngForm" (ngSubmit)="createComment(commentForm.value)">
+<form [formGroup]="form" #formDirective="ngForm" (ngSubmit)="createComment(formDirective)">
   <div class="form-group">
     <textarea
       class="form-control"
-      id="comment"
-      name="comment" ngModel required #comment="ngModel">
+      formControlName="comment" [ngClass]="{ 'is-invalid': submitted && f.comment.errors }">
     </textarea>
-    <span class="help-block" *ngIf="!comment.valid && comment.touched">Please enter a comment</span>
+    <div *ngIf="submitted && f.comment.errors" class="invalid-feedback">
+      <div *ngIf="f.comment.errors.required">Please enter your comment</div>
+    </div>
   </div>
     <button
       type="submit" class="btn btn-primary btn-sm">
       Submit
     </button>
  </form>
-

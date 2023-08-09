@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, map } from "rxjs";
 import { UserDTO } from "src/app/models/user-dto.interface";
 import { environment } from "src/environments/environment";
 
@@ -16,12 +16,11 @@ export class RegistrationService{
         return this.http.post<UserDTO>(`${USER_API}/create`,newUser);
     }
 
-    validateUser(user:UserDTO): Observable<UserDTO>{
-        return this.http.post<UserDTO>(`${USER_API}/login`,user);
-    }
-
-    saveCurrentUser(user:UserDTO){
-        console.log(user);
-        localStorage.setItem("user", JSON.stringify(user));
+    saveCurrentUser(emailId: string, password: string):Observable<UserDTO>{
+        return this.http.post<UserDTO>(`${USER_API}/login`, { emailId, password })
+            .pipe(map(user => {
+                localStorage.setItem('user', JSON.stringify(user));
+                return user;
+            }));
     }
 }
