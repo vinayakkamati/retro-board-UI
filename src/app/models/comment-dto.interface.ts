@@ -4,5 +4,6 @@ export class CommentDTO{
     id:bigint;
     comment: string;
     commentType: string;
-    user: UserDTO;
+    dateCreated: string;
+    createdBy: UserDTO;
 }

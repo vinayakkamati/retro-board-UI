@@ -4,6 +4,9 @@
     box-sizing: border-box;
   
 }
+.help-block{
+    color: red;
+  }
 
 body{
     /* background: linear-gradient(90deg, rgb(194, 193, 197) 0%, rgb(206, 205, 207) 35%, rgb(218, 220, 220) 100%); */

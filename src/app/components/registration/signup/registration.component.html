@@ -3,19 +3,23 @@
         <h4 class="text-center">Signup</h4>
         <div class="mb-2 mt-4">
           <label for="name" class="form-label">Name</label>
-            <input type="text" name="userName" class="form-control" id="name" ngModel required #name="ngModel">
+            <input type="text" name="name" class="form-control" id="name" ngModel required #name="ngModel"/>
+            <span class="help-block" *ngIf="!name.valid && name.touched">Please enter your name</span>
         </div>
         <div class="mb-2 mt-4">
           <label for="email" class="form-label">Email</label>
-          <input type="email" name="emailId" class="form-control" id="email" ngModel required #name="ngModel">
+          <input type="email" name="emailId" class="form-control" id="emailId" ngModel required #emailId="ngModel">
+          <span class="help-block" *ngIf="!emailId.valid && emailId.touched">Please enter your email</span>
         </div>
         <div class="mb-2 mt-4">
           <label for="password" class="form-label">Password</label>
-          <input type="password" name="password" class="form-control" id="password" ngModel required #name="ngModel">
+          <input type="password" name="password" class="form-control" id="password" ngModel required #password="ngModel">
+          <span class="help-block" *ngIf="!password.valid && password.touched">Please enter your password</span>
         </div>
         <div class="mb-2 mt-4">
           <label for="c_password" class="form-label">Confirm Password</label>
-          <input type="password" name="c_password" class="form-control" id="c_password" ngModel required #name="ngModel">
+          <input type="password" name="c_password" class="form-control" id="c_password" ngModel required #c_password="ngModel">
+          <span class="help-block" *ngIf="!c_password.valid && c_password.touched">Please confirm your password</span>
         </div>
         <button type="submit" class="btn btn-primary mt-4">Sign up</button>
         <div class="text-center login">

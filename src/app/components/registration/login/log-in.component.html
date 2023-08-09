@@ -1,13 +1,15 @@
 <div class="container-fluid">
-  <form class="mx-auto">
+  <form class="mx-auto"  #userCreateForm="ngForm" (ngSubmit)="validateUser(userCreateForm.value)">
       <h4 class="text-center">Login</h4>
       <div class="mb-3 mt-5">
         <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+          <input  type="email" name="emailId" class="form-control" id="emailId" ngModel required #emailId="ngModel">
+          <span class="help-block" *ngIf="!emailId.valid && emailId.touched">Please enter your email</span>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password">
+          <input type="password" name="password" class="form-control" id="password" ngModel required #password="ngModel">
+          <span class="help-block" *ngIf="!password.valid && password.touched">Please enter your password</span>
       </div>      
       <button type="submit" class="btn btn-primary mt-4">Login</button>
       <div class="text-center signup">

@@ -21,13 +21,15 @@
             </div>
             <ng-template #other_content>
               <p>{{ comment.comment }}</p>
-              <button (click) = "deleteComment(comment.id)">
-                <i class="material-icons" style="font-size:20px;color:rgb(223, 68, 68)">delete</i>
-              </button>
-              &nbsp;
-              <button (click) = "editComment(comment.id)">
-                <i class="fa fa-edit" style="font-size:20px"></i>
-              </button> 
+              <div *ngIf = "comment.createdBy.id == currentUser.id">
+                <button (click) = "deleteComment(comment.id)">
+                  <i class="material-icons" style="font-size:20px;color:rgb(223, 68, 68)">delete</i>
+                </button>
+                &nbsp;
+                <button (click) = "editComment(comment.id)">
+                  <i class="fa fa-edit" style="font-size:20px"></i>
+                </button>
+              </div> 
             </ng-template>
          </div>
         </div>
