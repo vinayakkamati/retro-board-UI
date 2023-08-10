@@ -12,11 +12,14 @@ import { CommentItemComponent } from './components/board/comment-item/comment-it
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import { AuthGaurd } from './auth-guard.service';
+import { RegistrationService } from './components/registration/registration.service';
 
 const appRoutes: Routes = [
   {path:'', component: LogInComponent},
   {path:'register', component: RegistrationComponent},
-  {path:'board', component: BoardItemComponent}
+  {path:'board', canActivate:[AuthGaurd], component: BoardItemComponent},
+  {path:'**', redirectTo:'/board'}
 
 ]
 @NgModule({
@@ -35,7 +38,7 @@ const appRoutes: Routes = [
     MatButtonModule, MatMenuModule, MatIconModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [RegistrationService,AuthGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
