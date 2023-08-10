@@ -5,6 +5,7 @@ import { CommentService } from '../services/comment.service';
 import { CommentDTO } from 'src/app/models/comment-dto.interface';
 import { RegistrationService } from '../../registration/registration.service';
 import { UserDTO } from 'src/app/models/user-dto.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-board-item',
@@ -23,7 +24,8 @@ export class BoardItemComponent {
   timeoutId?: number;
 
   constructor(private cardService: CardService, private commentService: CommentService,
-      private userService:RegistrationService) {}
+      private userService:RegistrationService,
+      private router: Router,) {}
 
   ngOnInit() {
     this.cardService
@@ -88,4 +90,10 @@ export class BoardItemComponent {
       this.updated = false;
     }, 2000);
   }
+  
+  logOut() {
+    localStorage.removeItem('user');
+    this.router.navigate(['/']);
+}
+
 }
