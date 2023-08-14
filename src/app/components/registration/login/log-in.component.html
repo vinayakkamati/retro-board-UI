@@ -1,5 +1,5 @@
 <div class="alert alert-danger" *ngIf="error">
-  <p>Please enter valid username or password</p>
+  <p>{{ error }}</p>
 </div>
 <div class="container-fluid">
   <form class="mx-auto"  [formGroup]="form" (ngSubmit)="validateUser()">
@@ -18,8 +18,7 @@
             <div *ngIf="f.password.errors.required">Password is required</div>
         </div>
       </div>      
-      <button [disabled]="loading" class="btn btn-primary">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+      <button [disabled]="form.controls['username' && 'password'].invalid" class="btn btn-primary">
         Login
     </button>
       <div class="text-center signup">

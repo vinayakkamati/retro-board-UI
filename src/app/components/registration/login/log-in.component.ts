@@ -10,7 +10,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LogInComponent implements OnInit{
   form!: FormGroup;
-  loading = false;
   submitted = false;
   error = null;  
   timeoutId?: number;
@@ -42,8 +41,7 @@ get f() { return this.form.controls; }
               })
           },
           error: error => {
-            this.error=error.message;
-              this.loading = false;
+            this.error=error.error.message;
               this.resetTimer();
           }
         }
