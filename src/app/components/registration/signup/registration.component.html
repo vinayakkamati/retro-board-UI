@@ -1,5 +1,5 @@
 <div class="alert alert-danger" *ngIf="error">
-  <p>The email is already registered</p>
+  <p>{{ error }}</p>
 </div>
 <div class="container-fluid">
     <form class="mx-auto" [formGroup]="form" (ngSubmit)="createUser()">
@@ -32,8 +32,7 @@
             <div *ngIf="f.c_password.errors.required">Please confirm your password</div>
           </div>
         </div>
-        <button [disabled]="loading" class="btn btn-primary">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+        <button [disabled]="!form.valid" class="btn btn-primary">
           Sign up
          </button>
         <div class="text-center login">

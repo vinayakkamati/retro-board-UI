@@ -49,9 +49,6 @@ get f() { return this.form.controls; }
     if (this.form.invalid) {
       return;
     }
-    // if(!this.f.password.value == this.f.c_password.value){
-    //   return;
-    // }
     this.user.userName = this.f.name.value;
     this.user.emailId = this.f.emailId.value;
     this.user.password = this.f.password.value;
@@ -60,8 +57,7 @@ get f() { return this.form.controls; }
         this.router.navigate(['/'])
       },
       error => {
-        this.error=error.message;
-          this.loading = false;
+        this.error=error.error.message;
           this.resetTimer();
       }
     );

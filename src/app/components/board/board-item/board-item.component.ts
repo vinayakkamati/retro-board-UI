@@ -6,6 +6,7 @@ import { CommentDTO } from 'src/app/models/comment-dto.interface';
 import { RegistrationService } from '../../registration/registration.service';
 import { UserDTO } from 'src/app/models/user-dto.interface';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-board-item',
@@ -22,10 +23,11 @@ export class BoardItemComponent {
   updated = false;
   deleted = false;
   timeoutId?: number;
+  form!: FormGroup;
 
   constructor(private cardService: CardService, private commentService: CommentService,
       private userService:RegistrationService,
-      private router: Router,) {}
+      private router: Router, private formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.cardService
@@ -33,6 +35,9 @@ export class BoardItemComponent {
       .subscribe((categories: Category[]) => (this.categories = categories));
     this.currentUser = JSON.parse(localStorage.getItem('user') || '[]');
     this.fetchComments();
+    this.form = this.formBuilder.group({
+      comment: ['', Validators.required]
+  });
   }
 
   editComment(id:any){
